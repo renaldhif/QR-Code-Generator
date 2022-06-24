@@ -37,16 +37,20 @@
                 </div>
                 <!-- Download Button -->
                 <div id="btnDownload" class="flex justify-center hidden">
-                    <button class="bg-sky-500 py-4 px-8 hover:shadow-lg hover:opacity-75 transisition duration-300 ease-in-out text-white font-semibold" onclick="downloadQR()">Download</button>
+                    <button class="bg-sky-500 py-4 px-8 hover:shadow-lg hover:opacity-75 transisition duration-300 ease-in-out text-white font-semibold" onclick="saveQR()">Download</button>
                 </div>
             </div>
             <h2 class="mt-10 text-center text-sky-500 font-semibold text-xl">How to use</h2>
             <p class="mt-5 text-center text-slate-500 font-base text-base">
                 1. Input the link you want to generate the QR Code
                 <br>
-                2. Click the button "Generate"
+                2. The link must be a valid link (must start with http:// or https://)
                 <br>
-                3. The QR Code will be generated
+                3. Click the button "Generate"
+                <br>
+                4. The QR Code will be generated
+                <br>
+                5. Click the button "Download" to download the QR Code
             </p>
         </div>
     </section>
@@ -75,19 +79,19 @@
             let qrInput = document.getElementById('qrInput').value;
             let containsHttp = qrInput.includes("http");
             let containsHttps = qrInput.includes("https");
-            // if user input blank
+            // validate the link has http or https
             if(containsHttp === true || containsHttps === true){
-                console.log("block elif")
                 generateQR();
+                document.getElementById('btnDownload').classList.remove('hidden');
                 
             }
+            // validate the link is blank
             else if(qrInput == ""){
                 //show alert provide a link
-                console.log(qrInput);
                 alert("Field cannot be blank! Please input a link");
             }
+            // validate the link is not valid
             else{
-                console.log("block else");
                 alert("Invalid link! Please input a valid link");
             }
         }
