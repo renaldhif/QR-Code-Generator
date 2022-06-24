@@ -14,7 +14,7 @@
             <!-- QR Code Box -->
             <h1 class="text-center text-sky-500 font-bold py-10 text-2xl hover:">QR CODE GENERATOR</h1>
                 <div class="flex justify-center ">
-                    <canvas id="canvas" class="w-60 h-60 border-solid border-2 border-sky-500"></canvas>
+                    <canvas id="canvas" class="w-80 h-80 border-solid border-2 border-sky-500"></canvas>
                 </div>
         </div>    
     </section>
@@ -33,7 +33,7 @@
                 </div>
                 <!-- Generate Button -->
                 <div class="flex justify-center">
-                    <button class="my-8 bg-sky-500 py-4 px-8 hover:shadow-lg hover:opacity-75 transisition duration-300 ease-in-out text-white font-semibold" onclick="validLink()">Generate</button>
+                    <button class="my-8 bg-sky-500 py-4 px-9 hover:shadow-lg hover:opacity-75 transisition duration-300 ease-in-out text-white font-semibold" onclick="validLink()">Generate</button>
                 </div>
                 <!-- Download Button -->
                 <div id="btnDownload" class="flex justify-center hidden">
@@ -66,10 +66,15 @@
             let btnDownload = document.getElementById('btnDownload');
             
             // generate the QR with 240px width
-            QRCode.toCanvas(canvas, qrInput.value, {width: 240}, (err) => {
+            QRCode.toCanvas(canvas, qrInput.value, {width: 320}, (err) => {
                 if(err) console.error(err);
                 console.log("QR has been successfully generated");
             })
+            // add my website link to the QR Code
+            var ctx = qrCanvas.getContext('2d');
+            ctx.font = "9px Courier New";
+            // text, x, y
+            ctx.fillText("this qrcode made with qrcodegenerator.renaldhif.vercel.app", 4, 313);
         }
 
         // This function is to validate whether the link inputted is valid or not
